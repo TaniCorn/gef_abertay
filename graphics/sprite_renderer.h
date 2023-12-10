@@ -3,6 +3,7 @@
 
 #include <maths/matrix44.h>
 #include <graphics/default_sprite_shader.h>
+#include <maths/matrix33.h>
 
 namespace gef
 {
@@ -19,7 +20,8 @@ namespace gef
 		void SetShader( Shader* shader);
 
 		virtual void Begin(bool clear = true) = 0;
-		virtual void DrawSprite(const Sprite& sprite) = 0;
+		void DrawSprite(const Sprite& sprite);
+		virtual void DrawSprite(const Sprite& sprite, const gef::Matrix33& transform) = 0;
 		virtual void End() = 0;
 
 		inline const Matrix44& projection_matrix() const { return projection_matrix_; }

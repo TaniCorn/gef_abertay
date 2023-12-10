@@ -43,8 +43,8 @@ namespace gef
 		D3D11_RASTERIZER_DESC render_state_desc;
 		ZeroMemory(&render_state_desc, sizeof(D3D11_RASTERIZER_DESC));
 		render_state_desc.FillMode = D3D11_FILL_SOLID;
-		render_state_desc.CullMode = D3D11_CULL_BACK;
-		//	render_state_desc.CullMode = D3D11_CULL_NONE;
+		//render_state_desc.CullMode = D3D11_CULL_BACK;
+		render_state_desc.CullMode = D3D11_CULL_NONE;
 		hresult = platform_d3d.device()->CreateRasterizerState(&render_state_desc, &default_render_state_);
 
 
@@ -145,7 +145,8 @@ namespace gef
 		platform_d3d.device_context()->OMSetDepthStencilState(default_depth_stencil_state_, 0);
 	}
 
-	void SpriteRendererD3D11::DrawSprite(const Sprite& sprite)
+
+	void SpriteRendererD3D11::DrawSprite(const Sprite& sprite, const gef::Matrix33& transform)
 	{
 		if (shader_ == &default_shader_)
 		{
@@ -153,7 +154,7 @@ namespace gef
 			if (!texture)
 				texture = default_texture_;
 
-			default_shader_.SetSpriteData(sprite, texture);
+			default_shader_.SetSpriteData(sprite, transform, texture);
 			default_shader_.device_interface()->SetVariableData();
 
 			default_shader_.device_interface()->BindTextureResources(platform_);

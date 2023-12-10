@@ -15,6 +15,7 @@ namespace gef
 {
 	class Sprite;
 	class Matrix44;
+	class Matrix33;
 	class Texture;
 
 	class DefaultSpriteShader : public Shader
@@ -24,10 +25,11 @@ namespace gef
 		~DefaultSpriteShader();
 
 		void SetSceneData(const Matrix44& projection_matrix);
-		void SetSpriteData(const Sprite& sprite, const Texture* texture);
+		void SetSpriteData(const Sprite& sprite, const gef::Matrix33& transform, const Texture* texture);
+		void BuildSpriteTransform(const Sprite& sprite, gef::Matrix33& transform);
 	protected:
 		DefaultSpriteShader();
-		void BuildSpriteShaderData(const Sprite& sprite, Matrix44& sprite_data);
+		void BuildSpriteShaderData(const Sprite& sprite, const gef::Matrix33& transform, Matrix44& sprite_data);
 
 
 		Int32 sprite_data_variable_index_;

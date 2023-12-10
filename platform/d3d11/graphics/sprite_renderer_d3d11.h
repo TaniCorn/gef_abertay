@@ -18,6 +18,8 @@ namespace gef
 
 		void Begin(bool clear = true);
 		void DrawSprite(const Sprite& sprite);
+		void DrawSprite(const Sprite& sprite, const gef::Matrix33& transform);
+
 		void End();
 
 	private:

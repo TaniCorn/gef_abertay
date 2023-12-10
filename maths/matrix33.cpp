@@ -152,4 +152,41 @@ namespace gef
       m[2][ 1 ] = temp[ 2 ][ 1 ];
       m[2][ 2 ] = temp[ 2 ][ 2 ];
     }
+
+	void Matrix33::Scale(const gef::Vector2& scale)
+	{
+		m[0][0] = scale.x;
+		m[0][1] = 0.0f;
+		m[0][2] = 0.0f;
+
+		m[1][0] = 0.0f;
+		m[1][1] = scale.y;
+		m[1][2] = 0.0f;
+
+		m[2][0] = 0.0f;
+		m[2][1] = 0.0f;
+		m[2][2] = 1.0f;
+	}
+
+
+	void Matrix33::Rotate(float radiansRot)
+	{
+		m[0][0] = cosf(radiansRot);
+		m[0][1] = sinf(radiansRot);
+		m[0][2] = 0.0f;
+
+		m[1][0] = -sinf(radiansRot);
+		m[1][1] = cosf(radiansRot);
+		m[1][2] = 0.0f;
+
+		m[2][0] = 0.0f;
+		m[2][1] = 0.0f;
+		m[2][2] = 1.0f;
+	}
+
+	void Matrix33::SetTranslation(const gef::Vector2& translation)
+	{
+		m[2][0] = translation.x;
+		m[2][1] = translation.y;
+	}
 }

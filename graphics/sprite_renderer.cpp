@@ -79,5 +79,12 @@ void SpriteRenderer::BuildSpriteShaderData(const Sprite& sprite, Matrix44& sprit
         sprite_data.set_m(3,3,colour.a);
 }
 
+void SpriteRenderer::DrawSprite(const Sprite& sprite)
+{
+	gef::Matrix33 sprite_transform;
+	default_shader_.BuildSpriteTransform(sprite, sprite_transform);
+
+	DrawSprite(sprite, sprite_transform);
+}
 
 }

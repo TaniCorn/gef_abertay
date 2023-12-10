@@ -2,6 +2,7 @@
 #define _GEF_MATRIX_33_H
 
 #include <gef.h>
+#include <maths/vector2.h>
 
 namespace gef
 {
@@ -18,6 +19,10 @@ namespace gef
 		void Inverse(const Matrix33 matrix, float& determinant);
 		void Cofactor(const Matrix33 matrix);
 		void OrthoNormalise(const Matrix33& matrix);
+
+		void Scale(const gef::Vector2& scale);
+		void Rotate(float radiansRot);
+		void SetTranslation(const gef::Vector2& translation);
 
 		const Matrix33 operator*(const Matrix33& matrix) const;
 		const Matrix33 operator*(const float scalar) const;

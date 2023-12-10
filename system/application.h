@@ -22,7 +22,7 @@ namespace gef
 
 	protected:
 		class Platform& platform_;
-	private:
+	public:
 		bool running_;
 	};
 }
